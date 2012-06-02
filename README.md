@@ -17,6 +17,7 @@ Usage
 =====
 1. Create a directory where you will keep remoto-it and the recipes, for example 'provisioning'.
 1. Clone this project into a 'remoto-it' subdirectory
+
 		git clone git@github.com:nestoru/remoto-it.git
 1. Checkout the needed scripts into a 'recipes' subdirectory.
 1. Create the Recipe out of real commands you issue to perform your task in recipes/myRecipe.sh. Here is a simple (idempotent as its intention is reinstall the package any time it is run) nodejs.sh recipe:
@@ -46,6 +47,7 @@ Usage
 		nodejs.sh
 
 1. Invoke run.sh with a valid user and ${host}:
+
 	    ./run.sh remoteUser sample.com
 
 How it works
