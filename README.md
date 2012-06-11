@@ -16,9 +16,10 @@ RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currentl
 Usage
 =====
 1. Create a directory where you will keep remoto-it and the recipes, for example 'provisioning'.
-1. Clone this project into a 'remoto-it' subdirectory
+1. Clone this project into a 'remoto-it' subdirectory using either git or https as shown below
 
 		git clone git@github.com:nestoru/remoto-it.git
+		git clone https://github.com/nestoru/remoto-it.git
 1. Checkout the needed scripts into a 'recipes' subdirectory.
 1. Create the Recipe out of real commands you issue to perform your task in recipes/myRecipe.sh. Here is a simple (idempotent as its intention is reinstall the package any time it is run) nodejs.sh recipe:
 
