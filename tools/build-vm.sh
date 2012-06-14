@@ -6,6 +6,8 @@
 #
 # Tested in OSX
 #
+# To create a VirtualBox Ubuntu dev environment look into http://thinkinginsoftware.blogspot.com/2012/05/building-and-sharing-virtualbox-vm-for.html
+#
 
 START=$(date +%s)
 
