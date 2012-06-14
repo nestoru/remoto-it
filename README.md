@@ -55,7 +55,7 @@ How it works
 ============
 There is not much to do in order to automate using bash scripts. Just authorize a public key in your remote servers so things like rsync are possible, make sure the sudoer user password is only provided from a user answer (as a double optin recognizing you know what you are doing), have a way to customize which of your recipes (POB scripts) will be run remotely and finally send your commands over the created SSH tunel.
 
-The main script run.sh uses a couple of functions from common.sh and a recipes folder containing a file per server domain ($host.sh) with the list of recipes to run there (apache.sh, nodejs.sh, cowch.sh etc) You host your recipes directory wherever you want (hopefully here in github those that are completely reusable by others). The only tw scripts you need 
+The main script run.sh uses a couple of functions from common.sh and a recipes folder containing a file per server domain ($host.sh) with the list of recipes to run there (apache.sh, nodejs.sh, cowch.sh etc) You host your recipes directory wherever you want (hopefully here in github so those that are completely reusable by others).
 
 Look at common.sh for some handy functionality like the use of "expect" to be able to run commands as root remotely without the need to type the user password more than once. The svn recipe example below shows how you can interactively ask for passwords in your scripts. It uses the powerful "expect" Unix tool. You can hardly automate or test Unix systems without this great piece of software.
 
