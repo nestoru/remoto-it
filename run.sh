@@ -49,7 +49,7 @@ do
   if [[ $recipe =~ ^[0-9a-zA-Z].* ]]
   then
     echo "************* Running $recipe recipe ***************"
-	firstDirOrFileToken=${recipe%%/*}
+	firstDirOrFileToken = ${recipe%%/*}
     rsyncFile ../recipes/$firstDirOrFileToken
     #remotely run as root the corresponding config script
     runremote $user $host $password "~/$recipe" yes
