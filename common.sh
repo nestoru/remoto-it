@@ -7,14 +7,19 @@ function runremote {
   host=$2
   password=$3
   command=$4
-  asroot=${5:-"no"}
   
   expect -c "
-  spawn ssh -t $user@$host \"sudo $command\"
-  expect \"password\"
+  spawn ssh -t $user@$host \"sudo -k; sudo $command\"
+  expect \"assword\"
   send \"$password\n\"
-  interact"
-
+  interact
+  catch wait reason
+  set exit_code [lindex \$reason 3]
+  if { \$exit_code > 0 } {
+  	puts \"ERROR: exiting expect with \$exit_code\"
+  	exit \$exit_code
+  }
+  "
 }
 
 #

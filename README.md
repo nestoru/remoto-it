@@ -178,6 +178,10 @@ Finally here is an idempotent recipe to install couchdb. It can be run again and
 
 Provisioning is not just about continuous software delivery. It is about continuous software maintenance. Software to be maintained needs healthy environments. The Infrastructure needs software upgrades, updates, patches. You can automate and should automate all that especially if you maintain farms of similar servers.
 
+Reusing Recipes
+===============
+Remoto-IT rsyncs only the parent directories containing each of the called recipes. You might find useful to have a common directory below your recipes folder where you keep parametrized scripts then just an empty main.sh that you invoke to make sure all common scripts are present in the target server. This allows you to manage different OS while reusing management procedures.
+
 FAQ
 ===
 Why this and not Chef or Puppet? Options. Just pick the one that works for you. Will I use Puppet or Chef? Yes, why not? Will I use them for everything? Not really. POB or POS are mandatory even if you are working with Chef or Puppet so let us learn the shell well enough first.
