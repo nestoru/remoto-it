@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash -e
 #
 # remoto-it/run.sh
+#
+# @author Nestor Urquiza
 #
 # Preconditions: A public key from the local server must be authorized in the remote server. Usually you should be able to:
 #                ssh-copy-id -i ~/.ssh/id_rsa.pub user@remote.domain.com
@@ -13,8 +15,6 @@
 # 
 
 START=$(date +%s)
-
-set -e
 
 NO_ARGS=0
 USAGE="Usage: `basename $0` <user> <host>"

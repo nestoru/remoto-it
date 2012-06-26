@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash -e
 #
 # name: build-vm.sh
 # author: Nestor Urquiza
@@ -10,9 +10,6 @@
 #
 
 START=$(date +%s)
-
-# Exit with code 1 on error
-set -e
 
 USAGE="Usage: `basename $0` <OS TYPE> <ISO PATH/VDI PATH> <VM NAME> <HDD SIZE> (`basename $0` Ubuntu_64 ~/Downloads/bhubdev.vdi  bhubdev 20000)"
 

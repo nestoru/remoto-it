@@ -1,5 +1,7 @@
 # Functions
 #
+# @author Nestor Urquiza
+#
 # Runs remote commands using sudo. Password is provided in a variable
 #
 function runremote {
