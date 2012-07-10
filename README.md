@@ -182,6 +182,10 @@ Reusing Recipes
 ===============
 Remoto-IT rsyncs only the parent directories containing each of the called recipes. You might find useful to have a common directory below your recipes folder where you keep parametrized scripts then just an empty main.sh that you invoke to make sure all common scripts are present in the target server. This allows you to manage different OS while reusing management procedures.
 
+Recipe Resources
+=================
+As mentioned before CIFS/NFS can be used to host packages that are only available for download after double-optins, license agreements and other manual procedures. For those we simply need to create a repository and mount it via CIFS/NFS. It is good to have a convention and the one we use is /mnt/pob-resource-repository. The POB recipes can then point to the right resource in a standard way that will work for any server. For a full example visit http://thinkinginsoftware.blogspot.com/2012/07/patching-or-installing-java-in-ubuntu.html.
+
 FAQ
 ===
 Why this and not Chef or Puppet? Options. Just pick the one that works for you. Will I use Puppet or Chef? Yes, why not? Will I use them for everything? Not really. POB or POS are mandatory even if you are working with Chef or Puppet so let us learn the shell well enough first.
