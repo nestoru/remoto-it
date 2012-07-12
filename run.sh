@@ -48,11 +48,11 @@ for recipe in "${lines[@]}"
 do
   if [[ $recipe =~ ^[0-9a-zA-Z].* ]]
   then
-    echo "************* Running $recipe recipe ***************"
+    echo "************* Running: $recipe ***************"
     firstDirOrFileToken=${recipe%%/*}
     rsyncFile ../recipes/$firstDirOrFileToken
     #remotely run as root the corresponding config script
-    runremote $user $host $password "~/$recipe" yes
+    runremote $user $host $password "~/$recipe"
   fi
 done
 
