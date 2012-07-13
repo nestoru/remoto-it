@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/bin/bash -e
 #
 # name: build-vm.sh
 # author: Nestor Urquiza
