@@ -44,15 +44,16 @@ old_IFS=$IFS
 IFS=$'\n'
 lines=($(cat ../recipes/${host}.sh)) # array
 IFS=$old_IFS
+#rsync the whole recipes directory
+rsyncFile ../recipes/
 for recipe in "${lines[@]}"
 do
   if [[ $recipe =~ ^[0-9a-zA-Z].* ]]
   then
     echo "************* Running: $recipe ***************"
     firstDirOrFileToken=${recipe%%/*}
-    rsyncFile ../recipes/$firstDirOrFileToken
     #remotely run as root the corresponding config script
-    runremote $user $host $password "~/$recipe"
+    runremote $user $host $password "$recipe"
   fi
 done
 

@@ -11,8 +11,8 @@ function runremote {
   command=$4
   
   expect -c "
-  spawn ssh -t $user@$host \"sudo -k; sudo $command\"
-  expect \"assword\"
+  spawn ssh -t $user@$host \"cd ~/recipes; sudo -k; sudo $command\"
+  expect "assword"
   send \"$password\n\"
   interact
   catch wait reason
@@ -29,5 +29,5 @@ function runremote {
 #
 function rsyncFile {
   from=$1
-  rsync -avz --delete -e "ssh -i $HOME/.ssh/id_rsa" $from $user@$host:~/
+  rsync -avz --delete -e "ssh -i $HOME/.ssh/id_rsa" $from $user@$host:~/recipes/
 }
