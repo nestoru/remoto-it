@@ -45,7 +45,7 @@ IFS=$'\n'
 lines=($(cat ../recipes/${host}.sh)) # array
 IFS=$old_IFS
 #rsync the whole recipes directory
-runremote $user $host $password "chown -R $user:$user ~/recipes"
+runremote $user $host $password "chown -R $user:$user ~/recipes/"
 rsyncFile ../recipes/
 for recipe in "${lines[@]}"
 do

@@ -11,7 +11,7 @@ function runremote {
   command=$4
   
   expect -c "
-  spawn ssh -t $user@$host \"cd ~/recipes; sudo -k; sudo $command\"
+  spawn ssh -t $user@$host \"mkdir -p ~/recipes; cd ~/recipes; sudo -k; sudo $command\"
   expect "assword"
   send \"$password\n\"
   interact
