@@ -62,4 +62,4 @@ done
 END=$(date +%s)
 DIFF=$(( $END - $START ))
 date
-echo "Finished in $DIFF seconds"
+echo "SUCCESS: Finished in $DIFF seconds"
