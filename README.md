@@ -1,3 +1,6 @@
+		$ ./run.sh 
+		Usage: run.sh <user> <host | hostNamesFilePath> [recipeFilePath]
+
 Introduction
 ============
 RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currently it has been tested in OSX/Ubuntu as a client and Ubuntu/Solaris as the target server.
