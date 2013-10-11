@@ -1,6 +1,6 @@
 Introduction
 ============
-RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currently it has been tested in OSX as a client and Ubuntu as the target server.
+RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currently it has been tested in OSX/Ubuntu as a client and Ubuntu/Solaris as the target server.
 
 	provisioning
 	├── recipes
@@ -13,7 +13,7 @@ RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currentl
 	    ├── common.sh
 	    └── run.sh
 
-Usage
+Setup
 =====
 1. Create a directory where you will keep remoto-it and the recipes, for example 'provisioning'.
 1. Clone this project into a 'remoto-it' subdirectory using either git or https as shown below
@@ -21,6 +21,10 @@ Usage
 		git clone git@github.com:nestoru/remoto-it.git
 		git clone https://github.com/nestoru/remoto-it.git
 1. Checkout the needed scripts into a 'recipes' subdirectory.
+
+Usage
+=====
+Scenario 1: By convention run recipes against a single domain
 1. Create the Recipe out of real commands you issue to perform your task in recipes/myRecipe.sh. Here is a simple (idempotent as its intention is reinstall the package any time it is run) nodejs.sh recipe:
 
 		#!/bin/bash
@@ -50,18 +54,30 @@ Usage
 1. Invoke run.sh with a valid user and ${host}:
 
 	    ./run.sh remoteUser sample.com
+	
+Scenario 2: By convention run recipes against multiple domains
+
+	    /run.sh remoteUser /tmp/hosts.txt
+
+Scenario 3: By configuration run recipes against a single domain
+
+	    /run.sh remoteUser sample.com /tmp/myRecipe.sh
+
+Scenario 4: By configuration run recipes against multiple domains
+
+		/run.sh remoteUser /tmp/hosts.txt /tmp/myRecipe.sh
 
 How it works
 ============
 There is not much to do in order to automate using bash scripts. Just authorize a public key in your remote servers so things like rsync are possible, make sure the sudoer user password is only provided from a user answer (as a double optin recognizing you know what you are doing), have a way to customize which of your recipes (POB scripts) will be run remotely and finally send your commands over the created SSH tunel.
 
-The main script run.sh uses a couple of functions from common.sh and a recipes folder containing a file per server domain ($host.sh) with the list of recipes to run there (apache.sh, nodejs.sh, cowch.sh etc) You host your recipes directory wherever you want (hopefully here in github so those are completely reusable by others).
+The main script run.sh uses a couple of functions from common.sh and a recipes folder containing a file per server domain ($host.sh) with the list of recipes to run there (apache.sh, nodejs.sh, cowch.sh etc) You host your recipes directory wherever you want (hopefully here in github so those are completely reusable by others). Look at the other three scenarios above for alternative use.
 
 Look at common.sh for some handy functionality like the use of "expect" to be able to run commands as root remotely without the need to type the user password more than once. The svn recipe example below shows how you can interactively ask for passwords in your scripts. It uses the powerful "expect" Unix tool. You can hardly automate or test Unix systems without this great piece of software.
 
 Recipe samples
 ==============
-The web is full of semiautomated and fully automated scripts to do anything you want. The possibilities are endless. Here are some examples:
+The web is full of semiautomated and fully automated scripts to do anything you want. The possibilities are endless but you will need to change some of them to ensure idempotency. Here are some examples:
 
 The recipes sometimes need resources that are not available publicly (like downloading Java needs user interaction or installing latest snapshot from a trunk in your svn repository). Whether it is source code pulled from an external server like revision control system and later compiled, parsed or interpreted, from an artifactory repository in terms of binary files, from a local CIF, a remote SFTP you will need to provide ways to automate file transfer. Here is a sample svn recipe which makes sure the server stays with a valid svn credential. This is handy because other recipes check for example configuration files from SVN and you do not want to keep inserting user and password to provision the server. To use it for your project you need to change the URL for svn of course:
 	
@@ -178,10 +194,6 @@ Finally here is an idempotent recipe to install couchdb. It can be run again and
 
 Provisioning is not just about continuous software delivery. It is about continuous software maintenance. Software to be maintained needs healthy environments. The Infrastructure needs software upgrades, updates, patches. You can automate and should automate all that especially if you maintain farms of similar servers.
 
-Reusing Recipes
-===============
-Remoto-IT rsyncs only the parent directories containing each of the called recipes. You might find useful to have a common directory below your recipes folder where you keep parametrized scripts then just an empty main.sh that you invoke to make sure all common scripts are present in the target server. This allows you to manage different OS while reusing management procedures.
-
 Recipe Resources
 =================
 As mentioned before CIFS/NFS can be used to host packages that are only available for download after double-optins, license agreements and other manual procedures. For those we simply need to create a repository and mount it via CIFS/NFS. It is good to have a convention and the one we use is /mnt/pob-resource-repository. The POB recipes can then point to the right resource in a standard way that will work for any server. For a full example visit http://thinkinginsoftware.blogspot.com/2012/07/patching-or-installing-java-in-ubuntu.html.
@@ -192,7 +204,6 @@ Why this and not Chef or Puppet? Options. Just pick the one that works for you. 
 	
 TODO
 ====
-1. Other OS client support. Currently tested from OSX only.
-1. Other OS Server support. Currently tested to provision Ubuntu.
-1. Support a list of servers. Should be easy.
+1. Other OS client support. Currently tested from OSX and Ubuntu.
+1. Other OS Server support. Currently tested to provision Ubuntu and Solaris.
 1. You name it ...
