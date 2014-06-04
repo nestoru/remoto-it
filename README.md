@@ -1,5 +1,5 @@
 		$ ./run.sh 
-		Usage: run.sh <user> <host | hostNamesFilePath> [recipeFilePath]
+		Usage: run.sh <user> <host | hostNamesFilePath> [command | recipeFilePath]
 
 Introduction
 ============
@@ -68,7 +68,11 @@ Scenario 3: By configuration run recipes against a single domain
 
 Scenario 4: By configuration run recipes against multiple domains
 
-		/run.sh remoteUser /tmp/hosts.txt /tmp/myRecipe.sh
+	    /run.sh remoteUser /tmp/hosts.txt /tmp/myRecipe.sh
+
+Scenario 5: By configuration run a specific command against multiple domains
+
+	    /run.sh remoteUser /tmp/hosts.txt "service tomcat stop -force" 
 
 How it works
 ============

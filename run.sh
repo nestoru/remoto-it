@@ -18,7 +18,7 @@
 START=$(date +%s)
 
 NO_ARGS=0
-USAGE="Usage: `basename $0` <user> <host | hostNamesFilePath> [recipeFilePath]"
+USAGE="Usage: `basename $0` <user> <host | hostNamesFilePath> [command | recipeFilePath]"
 
 #Main
 if [ $# -lt "2" ] 
@@ -29,12 +29,19 @@ fi
 
 user=$1
 hostOrHosts=$2
-recipeFilePath=$3
+commandOrRecipes=$3
+
 hosts[0]=$hostOrHosts
 
 hostsInFile=false;
 if [[ $hostOrHosts =~ ^.*\/.* ]]; then
-    hostsInFile=true;
+    hostsInFile=true
+fi
+
+if [[ $recipeOrRecipes =~ ^.*\/.* ]]; then
+    recipeFilePath=$commandOrRecipes
+else
+    command=$commandOrRecipes
 fi
 
 source ./common.sh
@@ -56,8 +63,10 @@ do
 	export host
 	if [ "$recipeFilePath" ]; then
 		lines=($(cat $recipeFilePath))
+	elif [ "$command" ]; then
+		lines=$command 
 	else
-    	lines=($(cat ../recipes/${host}.sh))
+    		lines=($(cat ../recipes/${host}.sh))
 	fi
     #rsync the whole recipes directory
     runremote $user $host $password "chown -R $user ~/recipes/"
