@@ -60,15 +60,15 @@ Scenario 1: By convention run recipes against a single domain
 	
 Scenario 2: By convention run recipes against multiple domains
 
-	    /run.sh remoteUser /tmp/hosts.txt
+	    ./run.sh remoteUser /tmp/hosts.txt
 
 Scenario 3: By configuration run recipes against a single domain
 
-	    /run.sh remoteUser sample.com /tmp/myRecipe.sh
+	    ./run.sh remoteUser sample.com /tmp/myRecipe.sh
 
 Scenario 4: By configuration run recipes against multiple domains
 
-	    /run.sh remoteUser /tmp/hosts.txt /tmp/myRecipe.sh
+	    ./run.sh remoteUser /tmp/hosts.txt /tmp/myRecipe.sh
 
 Scenario 5: By configuration run a specific command against multiple domains
 
