@@ -38,7 +38,7 @@ if [[ $hostOrHosts =~ ^.*\/.* ]]; then
     hostsInFile=true
 fi
 
-if [[ $recipeOrRecipes =~ ^.*\/.* ]]; then
+if [[ $commandOrRecipes =~ ^.*\/.* ]]; then
     recipeFilePath=$commandOrRecipes
 else
     command=$commandOrRecipes
@@ -78,7 +78,7 @@ do
         echo "************* Running: $recipe ***************"
         #remotely run as root the corresponding config script
         runremote $user $host $password "$recipe"
-      fi
+     fi
     done
 done
 IFS=$old_IFS
