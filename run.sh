@@ -34,11 +34,11 @@ commandOrRecipes=$3
 hosts[0]=$hostOrHosts
 
 hostsInFile=false;
-if [[ $hostOrHosts =~ ^.*\/.* ]]; then
+if [[ -f $hostOrHosts ]]; then
     hostsInFile=true
 fi
 
-if [[ $commandOrRecipes =~ ^.*\/.* ]]; then
+if [[ -f $commandOrRecipes ]]; then
     recipeFilePath=$commandOrRecipes
 else
     command=$commandOrRecipes
