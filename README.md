@@ -3,7 +3,7 @@
 
 Introduction
 ============
-RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currently it has been tested in OSX/Ubuntu as a client and Ubuntu/Solaris as the target server.
+RemotoIT is a Plain Old Bash (POB) script to perform Server Management. Currently it has been tested in OSX/Ubuntu as a client and Ubuntu/Solaris as the target server. Remoto-it recipes are files that contain no shebang, they are not to be interpreted by bash but by the remoto-it tool. These files are supposed to have statements that will be executed one by one in the remote server.
 
 	provisioning
 	├── recipes
